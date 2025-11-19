@@ -3,29 +3,79 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 60;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		741ED3A32ECE5B9D00991BE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 741ED39A2ECE5B9D00991BE8 /* Assets.xcassets */; };
+		741ED3A52ECE5B9D00991BE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741ED39D2ECE5B9D00991BE8 /* LaunchScreen.storyboard */; };
+		741ED3A62ECE5B9D00991BE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741ED39F2ECE5B9D00991BE8 /* Main.storyboard */; };
+		741ED3A72ECE5B9D00991BE8 /* View+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED37B2ECE5B9D00991BE8 /* View+Styles.swift */; };
+		741ED3A82ECE5B9D00991BE8 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED37D2ECE5B9D00991BE8 /* ActivityType.swift */; };
+		741ED3A92ECE5B9D00991BE8 /* CompletedActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED37E2ECE5B9D00991BE8 /* CompletedActivity.swift */; };
+		741ED3AA2ECE5B9D00991BE8 /* EnergyCycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED37F2ECE5B9D00991BE8 /* EnergyCycle.swift */; };
+		741ED3AB2ECE5B9D00991BE8 /* EnergyPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3802ECE5B9D00991BE8 /* EnergyPoint.swift */; };
+		741ED3AC2ECE5B9D00991BE8 /* Priority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3812ECE5B9D00991BE8 /* Priority.swift */; };
+		741ED3AD2ECE5B9D00991BE8 /* ScheduledActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3822ECE5B9D00991BE8 /* ScheduledActivity.swift */; };
+		741ED3AE2ECE5B9D00991BE8 /* EnergyCycleStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3842ECE5B9D00991BE8 /* EnergyCycleStorage.swift */; };
+		741ED3AF2ECE5B9D00991BE8 /* EnergyOptimizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3852ECE5B9D00991BE8 /* EnergyOptimizationService.swift */; };
+		741ED3B02ECE5B9D00991BE8 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3862ECE5B9D00991BE8 /* OnboardingService.swift */; };
+		741ED3B12ECE5B9D00991BE8 /* EnergyCycleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3882ECE5B9D00991BE8 /* EnergyCycleViewModel.swift */; };
+		741ED3B22ECE5B9D00991BE8 /* CheckLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED38A2ECE5B9D00991BE8 /* CheckLink.swift */; };
+		741ED3B32ECE5B9D00991BE8 /* InternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED38B2ECE5B9D00991BE8 /* InternetViewController.swift */; };
+		741ED3B42ECE5B9D00991BE8 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED38C2ECE5B9D00991BE8 /* LoaderViewController.swift */; };
+		741ED3B52ECE5B9D00991BE8 /* ActivitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED38E2ECE5B9D00991BE8 /* ActivitiesView.swift */; };
+		741ED3B62ECE5B9D00991BE8 /* AddActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED38F2ECE5B9D00991BE8 /* AddActivityView.swift */; };
+		741ED3B72ECE5B9D00991BE8 /* AnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3902ECE5B9D00991BE8 /* AnalysisView.swift */; };
+		741ED3B82ECE5B9D00991BE8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3912ECE5B9D00991BE8 /* ContentView.swift */; };
+		741ED3B92ECE5B9D00991BE8 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3922ECE5B9D00991BE8 /* DashboardView.swift */; };
+		741ED3BA2ECE5B9D00991BE8 /* EditActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3932ECE5B9D00991BE8 /* EditActivityView.swift */; };
+		741ED3BB2ECE5B9D00991BE8 /* EnergyInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3942ECE5B9D00991BE8 /* EnergyInputView.swift */; };
+		741ED3BC2ECE5B9D00991BE8 /* EnergyTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3952ECE5B9D00991BE8 /* EnergyTrackerView.swift */; };
+		741ED3BD2ECE5B9D00991BE8 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3962ECE5B9D00991BE8 /* OnboardingView.swift */; };
+		741ED3BE2ECE5B9D00991BE8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3972ECE5B9D00991BE8 /* SettingsView.swift */; };
+		741ED3BF2ECE5B9D00991BE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3992ECE5B9D00991BE8 /* AppDelegate.swift */; };
+		741ED3C02ECE5B9D00991BE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3A02ECE5B9D00991BE8 /* SceneDelegate.swift */; };
+		741ED3C12ECE5B9D00991BE8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741ED3A12ECE5B9D00991BE8 /* ViewController.swift */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		352C503B2C06E91A3652CF51 /* Pods_EnergyCycle.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnergyCycle.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		741ED3022ECDD53700991BE8 /* EnergyCycle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnergyCycle.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		741ED37B2ECE5B9D00991BE8 /* View+Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Styles.swift"; sourceTree = "<group>"; };
+		741ED37D2ECE5B9D00991BE8 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
+		741ED37E2ECE5B9D00991BE8 /* CompletedActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedActivity.swift; sourceTree = "<group>"; };
+		741ED37F2ECE5B9D00991BE8 /* EnergyCycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCycle.swift; sourceTree = "<group>"; };
+		741ED3802ECE5B9D00991BE8 /* EnergyPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyPoint.swift; sourceTree = "<group>"; };
+		741ED3812ECE5B9D00991BE8 /* Priority.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Priority.swift; sourceTree = "<group>"; };
+		741ED3822ECE5B9D00991BE8 /* ScheduledActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledActivity.swift; sourceTree = "<group>"; };
+		741ED3842ECE5B9D00991BE8 /* EnergyCycleStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCycleStorage.swift; sourceTree = "<group>"; };
+		741ED3852ECE5B9D00991BE8 /* EnergyOptimizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyOptimizationService.swift; sourceTree = "<group>"; };
+		741ED3862ECE5B9D00991BE8 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
+		741ED3882ECE5B9D00991BE8 /* EnergyCycleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCycleViewModel.swift; sourceTree = "<group>"; };
+		741ED38A2ECE5B9D00991BE8 /* CheckLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLink.swift; sourceTree = "<group>"; };
+		741ED38B2ECE5B9D00991BE8 /* InternetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetViewController.swift; sourceTree = "<group>"; };
+		741ED38C2ECE5B9D00991BE8 /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
+		741ED38E2ECE5B9D00991BE8 /* ActivitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesView.swift; sourceTree = "<group>"; };
+		741ED38F2ECE5B9D00991BE8 /* AddActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddActivityView.swift; sourceTree = "<group>"; };
+		741ED3902ECE5B9D00991BE8 /* AnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisView.swift; sourceTree = "<group>"; };
+		741ED3912ECE5B9D00991BE8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		741ED3922ECE5B9D00991BE8 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		741ED3932ECE5B9D00991BE8 /* EditActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditActivityView.swift; sourceTree = "<group>"; };
+		741ED3942ECE5B9D00991BE8 /* EnergyInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyInputView.swift; sourceTree = "<group>"; };
+		741ED3952ECE5B9D00991BE8 /* EnergyTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyTrackerView.swift; sourceTree = "<group>"; };
+		741ED3962ECE5B9D00991BE8 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		741ED3972ECE5B9D00991BE8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		741ED3992ECE5B9D00991BE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		741ED39A2ECE5B9D00991BE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		741ED39B2ECE5B9D00991BE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		741ED39C2ECE5B9D00991BE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		741ED39E2ECE5B9D00991BE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		741ED3A02ECE5B9D00991BE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		741ED3A12ECE5B9D00991BE8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8112B995631923CD54B6ACF9 /* Pods-EnergyCycle.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnergyCycle.release.xcconfig"; path = "Target Support Files/Pods-EnergyCycle/Pods-EnergyCycle.release.xcconfig"; sourceTree = "<group>"; };
 		BD23C24E13EF66239FB55BCF /* Pods-EnergyCycle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnergyCycle.debug.xcconfig"; path = "Target Support Files/Pods-EnergyCycle/Pods-EnergyCycle.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		741ED33C2ECDD57000991BE8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 741ED3012ECDD53700991BE8 /* EnergyCycle */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		741ED3342ECDD57000991BE8 /* EnergyCycle */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (741ED33C2ECDD57000991BE8 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = EnergyCycle; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		741ED2FF2ECDD53700991BE8 /* Frameworks */ = {
@@ -41,7 +91,7 @@
 		741ED2F92ECDD53600991BE8 = {
 			isa = PBXGroup;
 			children = (
-				741ED3342ECDD57000991BE8 /* EnergyCycle */,
+				741ED3A22ECE5B9D00991BE8 /* EnergyCycle */,
 				741ED3032ECDD53700991BE8 /* Products */,
 				8779176A24F6B5B4F47F1CCC /* Pods */,
 				BDEEED54ADC5A4074D714456 /* Frameworks */,
@@ -54,6 +104,92 @@
 				741ED3022ECDD53700991BE8 /* EnergyCycle.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		741ED37C2ECE5B9D00991BE8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				741ED37B2ECE5B9D00991BE8 /* View+Styles.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		741ED3832ECE5B9D00991BE8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				741ED37D2ECE5B9D00991BE8 /* ActivityType.swift */,
+				741ED37E2ECE5B9D00991BE8 /* CompletedActivity.swift */,
+				741ED37F2ECE5B9D00991BE8 /* EnergyCycle.swift */,
+				741ED3802ECE5B9D00991BE8 /* EnergyPoint.swift */,
+				741ED3812ECE5B9D00991BE8 /* Priority.swift */,
+				741ED3822ECE5B9D00991BE8 /* ScheduledActivity.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		741ED3872ECE5B9D00991BE8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				741ED3842ECE5B9D00991BE8 /* EnergyCycleStorage.swift */,
+				741ED3852ECE5B9D00991BE8 /* EnergyOptimizationService.swift */,
+				741ED3862ECE5B9D00991BE8 /* OnboardingService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		741ED3892ECE5B9D00991BE8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				741ED3882ECE5B9D00991BE8 /* EnergyCycleViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		741ED38D2ECE5B9D00991BE8 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				741ED38A2ECE5B9D00991BE8 /* CheckLink.swift */,
+				741ED38B2ECE5B9D00991BE8 /* InternetViewController.swift */,
+				741ED38C2ECE5B9D00991BE8 /* LoaderViewController.swift */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		741ED3982ECE5B9D00991BE8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				741ED38D2ECE5B9D00991BE8 /* LoadingView */,
+				741ED38E2ECE5B9D00991BE8 /* ActivitiesView.swift */,
+				741ED38F2ECE5B9D00991BE8 /* AddActivityView.swift */,
+				741ED3902ECE5B9D00991BE8 /* AnalysisView.swift */,
+				741ED3912ECE5B9D00991BE8 /* ContentView.swift */,
+				741ED3922ECE5B9D00991BE8 /* DashboardView.swift */,
+				741ED3932ECE5B9D00991BE8 /* EditActivityView.swift */,
+				741ED3942ECE5B9D00991BE8 /* EnergyInputView.swift */,
+				741ED3952ECE5B9D00991BE8 /* EnergyTrackerView.swift */,
+				741ED3962ECE5B9D00991BE8 /* OnboardingView.swift */,
+				741ED3972ECE5B9D00991BE8 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		741ED3A22ECE5B9D00991BE8 /* EnergyCycle */ = {
+			isa = PBXGroup;
+			children = (
+				741ED37C2ECE5B9D00991BE8 /* Extensions */,
+				741ED3832ECE5B9D00991BE8 /* Models */,
+				741ED3872ECE5B9D00991BE8 /* Services */,
+				741ED3892ECE5B9D00991BE8 /* ViewModels */,
+				741ED3982ECE5B9D00991BE8 /* Views */,
+				741ED3992ECE5B9D00991BE8 /* AppDelegate.swift */,
+				741ED39A2ECE5B9D00991BE8 /* Assets.xcassets */,
+				741ED39B2ECE5B9D00991BE8 /* Info.plist */,
+				741ED39D2ECE5B9D00991BE8 /* LaunchScreen.storyboard */,
+				741ED39F2ECE5B9D00991BE8 /* Main.storyboard */,
+				741ED3A02ECE5B9D00991BE8 /* SceneDelegate.swift */,
+				741ED3A12ECE5B9D00991BE8 /* ViewController.swift */,
+			);
+			path = EnergyCycle;
 			sourceTree = "<group>";
 		};
 		8779176A24F6B5B4F47F1CCC /* Pods */ = {
@@ -88,9 +224,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				741ED3342ECDD57000991BE8 /* EnergyCycle */,
 			);
 			name = EnergyCycle;
 			productName = EnergyCycle;
@@ -135,6 +268,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				741ED3A32ECE5B9D00991BE8 /* Assets.xcassets in Resources */,
+				741ED3A52ECE5B9D00991BE8 /* LaunchScreen.storyboard in Resources */,
+				741ED3A62ECE5B9D00991BE8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,10 +306,56 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				741ED3A72ECE5B9D00991BE8 /* View+Styles.swift in Sources */,
+				741ED3A82ECE5B9D00991BE8 /* ActivityType.swift in Sources */,
+				741ED3A92ECE5B9D00991BE8 /* CompletedActivity.swift in Sources */,
+				741ED3AA2ECE5B9D00991BE8 /* EnergyCycle.swift in Sources */,
+				741ED3AB2ECE5B9D00991BE8 /* EnergyPoint.swift in Sources */,
+				741ED3AC2ECE5B9D00991BE8 /* Priority.swift in Sources */,
+				741ED3AD2ECE5B9D00991BE8 /* ScheduledActivity.swift in Sources */,
+				741ED3AE2ECE5B9D00991BE8 /* EnergyCycleStorage.swift in Sources */,
+				741ED3AF2ECE5B9D00991BE8 /* EnergyOptimizationService.swift in Sources */,
+				741ED3B02ECE5B9D00991BE8 /* OnboardingService.swift in Sources */,
+				741ED3B12ECE5B9D00991BE8 /* EnergyCycleViewModel.swift in Sources */,
+				741ED3B22ECE5B9D00991BE8 /* CheckLink.swift in Sources */,
+				741ED3B32ECE5B9D00991BE8 /* InternetViewController.swift in Sources */,
+				741ED3B42ECE5B9D00991BE8 /* LoaderViewController.swift in Sources */,
+				741ED3B52ECE5B9D00991BE8 /* ActivitiesView.swift in Sources */,
+				741ED3B62ECE5B9D00991BE8 /* AddActivityView.swift in Sources */,
+				741ED3B72ECE5B9D00991BE8 /* AnalysisView.swift in Sources */,
+				741ED3B82ECE5B9D00991BE8 /* ContentView.swift in Sources */,
+				741ED3B92ECE5B9D00991BE8 /* DashboardView.swift in Sources */,
+				741ED3BA2ECE5B9D00991BE8 /* EditActivityView.swift in Sources */,
+				741ED3BB2ECE5B9D00991BE8 /* EnergyInputView.swift in Sources */,
+				741ED3BC2ECE5B9D00991BE8 /* EnergyTrackerView.swift in Sources */,
+				741ED3BD2ECE5B9D00991BE8 /* OnboardingView.swift in Sources */,
+				741ED3BE2ECE5B9D00991BE8 /* SettingsView.swift in Sources */,
+				741ED3BF2ECE5B9D00991BE8 /* AppDelegate.swift in Sources */,
+				741ED3C02ECE5B9D00991BE8 /* SceneDelegate.swift in Sources */,
+				741ED3C12ECE5B9D00991BE8 /* ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		741ED39D2ECE5B9D00991BE8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				741ED39C2ECE5B9D00991BE8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		741ED39F2ECE5B9D00991BE8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				741ED39E2ECE5B9D00991BE8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		741ED3162ECDD53700991BE8 /* Debug */ = {
@@ -198,7 +380,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = home.EnergyCycle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xia.b3nc8c3nr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -236,7 +418,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = home.EnergyCycle;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xia.b3nc8c3nr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
