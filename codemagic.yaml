@@ -8,7 +8,6 @@ workflows:
           XCODE_WORKSPACE: "EnergyCycle.xcworkspace"
           XCODE_SCHEME: "EnergyCycle"
           BUNDLE_ID: "com.xvl.b3nc7cl5g"
-          EXTENSION_BUNDLE_ID: "com.xvl.b3nc7cl5g.OneSignalNotificationServiceExtension"
           APP_STORE_APP_ID: 6746220155
         xcode: latest
         cocoapods: 1.14.2
