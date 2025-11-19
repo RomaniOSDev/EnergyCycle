@@ -37,7 +37,7 @@ extension View {
                 )
             )
             .cornerRadius(14)
-            .shadow(color: Color.color1.opacity(0.4), radius: 8, x: 0, y: 4)
+            .shadow(color: Color.color1.opacity(0.3), radius: 8, x: 0, y: 4)
             .shadow(color: Color.black.opacity(0.2), radius: 2, x: 0, y: 1)
     }
     
