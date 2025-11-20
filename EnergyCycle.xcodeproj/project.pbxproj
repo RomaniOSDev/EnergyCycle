@@ -370,7 +370,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EnergyCycle/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "BenaCycle Energy";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bena Cycle Energy";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -411,7 +411,7 @@
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EnergyCycle/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "BenaCycle Energy";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bena Cycle Energy";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
