@@ -7,8 +7,9 @@ workflows:
         vars:
           XCODE_WORKSPACE: "EnergyCycle.xcworkspace"
           XCODE_SCHEME: "EnergyCycle"
-          BUNDLE_ID: "com.xvl.b3nc7cl5g"
-          APP_STORE_APP_ID: 6746220155
+          BUNDLE_ID: "com.vlt.b3n4ch7g"
+          EXTENSION_BUNDLE_ID: "com.vlt.b3n4ch7g.OneSignalNotificationServiceExtension"
+          APP_STORE_APP_ID: 6755233676
         xcode: latest
         cocoapods: 1.14.2
       scripts:
@@ -24,6 +25,7 @@ workflows:
         - name: Fetch signing files
           script: |
             app-store-connect fetch-signing-files $BUNDLE_ID --type IOS_APP_STORE --create
+            app-store-connect fetch-signing-files $EXTENSION_BUNDLE_ID --type IOS_APP_STORE --create
         - name: Use system default keychain
           script: |
             keychain add-certificates
