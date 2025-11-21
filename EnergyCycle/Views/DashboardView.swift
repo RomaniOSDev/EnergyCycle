@@ -10,6 +10,8 @@ import SwiftUI
 struct DashboardView: View {
     @ObservedObject var viewModel: EnergyCycleViewModel
     @State private var showingEnergyInput = false
+    @State private var showingAddActivity = false
+    @State private var selectedRecommendation: (ActivityType, Date)?
     
     var body: some View {
         ZStack {
@@ -65,8 +67,14 @@ struct DashboardView: View {
                     }
                     
                     // Рекомендации
-                    RecommendationsView(viewModel: viewModel)
-                        .padding(.horizontal)
+                    RecommendationsView(
+                        viewModel: viewModel,
+                        onRecommendationTap: { activityType, recommendedTime in
+                            selectedRecommendation = (activityType, recommendedTime)
+                            showingAddActivity = true
+                        }
+                    )
+                    .padding(.horizontal)
                 }
                 .padding(.vertical)
             }
@@ -74,6 +82,19 @@ struct DashboardView: View {
             .sheet(isPresented: $showingEnergyInput) {
                 EnergyInputView(viewModel: viewModel)
                     .preferredColorScheme(.dark)
+            }
+            .sheet(isPresented: $showingAddActivity) {
+                if let recommendation = selectedRecommendation {
+                    AddActivityView(
+                        viewModel: viewModel,
+                        activityType: recommendation.0,
+                        recommendedTime: recommendation.1
+                    )
+                    .preferredColorScheme(.dark)
+                } else {
+                    AddActivityView(viewModel: viewModel)
+                        .preferredColorScheme(.dark)
+                }
             }
         }
     }
@@ -198,6 +219,7 @@ struct ActivityRowView: View {
 
 struct RecommendationsView: View {
     @ObservedObject var viewModel: EnergyCycleViewModel
+    var onRecommendationTap: ((ActivityType, Date) -> Void)?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -231,7 +253,10 @@ struct RecommendationsView: View {
                 ForEach(recommendations, id: \.0) { activityType, recommendedTime in
                     RecommendationRowView(
                         activityType: activityType,
-                        recommendedTime: recommendedTime
+                        recommendedTime: recommendedTime,
+                        onTap: {
+                            onRecommendationTap?(activityType, recommendedTime)
+                        }
                     )
                 }
             }
@@ -262,9 +287,20 @@ struct RecommendationsView: View {
 struct RecommendationRowView: View {
     let activityType: ActivityType
     let recommendedTime: Date
+    var onTap: (() -> Void)?
+    @State private var isPressed = false
     
     var body: some View {
-        HStack(spacing: 16) {
+        Button(action: {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                isPressed = true
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                isPressed = false
+                onTap?()
+            }
+        }) {
+            HStack(spacing: 16) {
             // Icon with gradient and glow
             ZStack {
                 // Outer glow
@@ -367,8 +403,14 @@ struct RecommendationRowView: View {
         )
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 4)
         .shadow(color: Color.color1.opacity(0.1), radius: 2, x: 0, y: 1)
+            }
+            .scaleEffect(isPressed ? 0.97 : 1.0)
+            .opacity(isPressed ? 0.8 : 1.0)
+            .buttonStyle(PlainButtonStyle())
+        }
+        
     }
-}
+
 
 #Preview {
     DashboardView(viewModel: EnergyCycleViewModel())

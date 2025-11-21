@@ -9,6 +9,17 @@ import SwiftUI
 import StoreKit
 
 struct SettingsView: View {
+    @StateObject private var viewModel = EnergyCycleViewModel()
+    @State private var showingExportOptions = false
+    @State private var showingShareSheet = false
+    @State private var exportData: String = ""
+    @State private var exportType: ExportType = .json
+    @State private var notificationsEnabled = UserDefaults.standard.bool(forKey: "notificationsEnabled")
+    
+    enum ExportType {
+        case json, csv
+    }
+    
     var body: some View {
         ZStack {
             Color.mainBack
@@ -18,6 +29,55 @@ struct SettingsView: View {
                     .font(.system(size: 35, weight: .heavy, design: .monospaced))
                 
                 VStack(spacing: 20) {
+                    // Notifications Toggle
+                    VStack(alignment: .leading, spacing: 12) {
+                        HStack {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.orange.opacity(0.2))
+                                    .frame(width: 44, height: 44)
+                                
+                                Image(systemName: "bell.fill")
+                                    .foregroundColor(.orange)
+                                    .font(.system(size: 20, weight: .semibold))
+                            }
+                            
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("Notifications")
+                                    .font(.headline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.colorText)
+                                Text("Reminders to assess energy")
+                                    .font(.caption)
+                                    .foregroundColor(.colorText.opacity(0.7))
+                            }
+                            
+                            Spacer()
+                            
+                            Toggle("", isOn: $notificationsEnabled)
+                                .onChange(of: notificationsEnabled) { enabled in
+                                    UserDefaults.standard.set(enabled, forKey: "notificationsEnabled")
+                                    if enabled {
+                                        NotificationService.shared.requestAuthorization()
+                                    } else {
+                                        NotificationService.shared.cancelAllNotifications()
+                                    }
+                                }
+                        }
+                        .padding(16)
+                        .smallCardStyle()
+                    }
+                    .padding(.horizontal)
+                    
+                    // Export Data
+                    SettingsButtonRow(
+                        icon: "square.and.arrow.up",
+                        title: "Export Data",
+                        iconColor: .purple
+                    ) {
+                        showingExportOptions = true
+                    }
+                    
                     // Rate Us
                     SettingsButtonRow(
                         icon: "star.fill",
@@ -49,6 +109,27 @@ struct SettingsView: View {
                 .padding(.vertical)
             }
             .foregroundColor(.colorText)
+            .actionSheet(isPresented: $showingExportOptions) {
+                ActionSheet(
+                    title: Text("Export Data"),
+                    buttons: [
+                        .default(Text("Export as JSON")) {
+                            exportType = .json
+                            exportData = viewModel.exportToJSON() ?? ""
+                            showingShareSheet = true
+                        },
+                        .default(Text("Export as CSV")) {
+                            exportType = .csv
+                            exportData = viewModel.exportToCSV()
+                            showingShareSheet = true
+                        },
+                        .cancel()
+                    ]
+                )
+            }
+            .sheet(isPresented: $showingShareSheet) {
+                ShareSheet(activityItems: [exportData])
+            }
         }
     }
     
@@ -108,6 +189,20 @@ struct SettingsButtonRow: View {
         }
         .buttonStyle(PlainButtonStyle())
     }
+}
+
+struct ShareSheet: UIViewControllerRepresentable {
+    let activityItems: [Any]
+    
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+            activityItems: activityItems,
+            applicationActivities: nil
+        )
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
 #Preview {

@@ -21,5 +21,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>We'll send you reminders to assess your energy levels throughout the day for optimal planning.</string>
 </dict>
 </plist>

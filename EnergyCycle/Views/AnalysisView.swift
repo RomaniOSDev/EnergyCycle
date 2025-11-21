@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AnalysisView: View {
     @ObservedObject var viewModel: EnergyCycleViewModel
+    @State private var selectedPeriod: Int = 7
+    @State private var showingHistory = false
     
     var body: some View {
         ZStack {
@@ -22,9 +24,31 @@ struct AnalysisView: View {
                     DayStatisticsView(energyCycle: viewModel.energyCycle)
                         .padding(.horizontal)
                     
+                    // Статистика за период
+                    PeriodStatisticsView(viewModel: viewModel, days: selectedPeriod)
+                        .padding(.horizontal)
+                    
                     // Анализ эффективности планирования
                     PlanningEffectivenessView(viewModel: viewModel)
                         .padding(.horizontal)
+                    
+                    // Кнопка просмотра истории
+                    Button(action: {
+                        showingHistory = true
+                    }) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "calendar")
+                                .font(.title3)
+                            Text("View History")
+                                .fontWeight(.semibold)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .foregroundColor(.white)
+                        .primaryButtonStyle()
+                    }
+                    .padding(.horizontal)
+                    .buttonStyle(PlainButtonStyle())
                     
                     // Рекомендации на завтра
                     TomorrowRecommendationsView(viewModel: viewModel)
@@ -33,6 +57,10 @@ struct AnalysisView: View {
                 .padding(.vertical)
             }
             .foregroundColor(.colorText)
+            .sheet(isPresented: $showingHistory) {
+                HistoryView(viewModel: viewModel)
+                    .preferredColorScheme(.dark)
+            }
         }
     }
 }
@@ -280,6 +308,325 @@ struct RecommendationItemView: View {
             }
         }
         .padding(.vertical, 4)
+    }
+}
+
+struct PeriodStatisticsView: View {
+    @ObservedObject var viewModel: EnergyCycleViewModel
+    let days: Int
+    
+    var statistics: EnergyStatistics {
+        viewModel.getStatistics(for: days)
+    }
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Statistics (\(days) days)")
+                .font(.headline)
+                .foregroundColor(.white)
+            
+            HStack(spacing: 20) {
+                StatisticCardView(
+                    title: "Avg Physical",
+                    value: Int(statistics.averagePhysicalEnergy * 100),
+                    unit: "%",
+                    color: .red
+                )
+                
+                StatisticCardView(
+                    title: "Avg Mental",
+                    value: Int(statistics.averageMentalEnergy * 100),
+                    unit: "%",
+                    color: .blue
+                )
+            }
+            
+            HStack(spacing: 20) {
+                StatisticCardView(
+                    title: "Total Tasks",
+                    value: statistics.totalActivities,
+                    unit: "",
+                    color: .green
+                )
+                
+                StatisticCardView(
+                    title: "Completion",
+                    value: Int(statistics.completionRate * 100),
+                    unit: "%",
+                    color: .orange
+                )
+            }
+        }
+        .padding(20)
+        .cardStyle()
+    }
+}
+
+struct HistoryView: View {
+    @ObservedObject var viewModel: EnergyCycleViewModel
+    @Environment(\.dismiss) var dismiss
+    @State private var selectedDate: Date = Date()
+    @State private var showingDayDetail: Date?
+    
+    var availableDates: [Date] {
+        viewModel.availableDates
+    }
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                Color.mainBack
+                    .ignoresSafeArea()
+                
+                if availableDates.isEmpty {
+                    VStack(spacing: 16) {
+                        Image(systemName: "calendar.badge.exclamationmark")
+                            .font(.system(size: 50))
+                            .foregroundColor(.colorText.opacity(0.5))
+                        Text("No history available")
+                            .foregroundColor(.colorText.opacity(0.7))
+                            .font(.headline)
+                    }
+                } else {
+                    ScrollView {
+                        VStack(spacing: 16) {
+                            ForEach(availableDates, id: \.self) { date in
+                                HistoryDayCard(
+                                    date: date,
+                                    viewModel: viewModel,
+                                    onTap: {
+                                        showingDayDetail = date
+                                    }
+                                )
+                            }
+                        }
+                        .padding()
+                    }
+                }
+            }
+            .navigationTitle("History")
+            .navigationBarTitleDisplayMode(.inline)
+            .foregroundColor(.colorText)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                    .foregroundColor(.colorText)
+                }
+            }
+            .sheet(item: Binding(
+                get: { showingDayDetail },
+                set: { showingDayDetail = $0 }
+            )) { date in
+                HistoryDayDetailView(date: date, viewModel: viewModel)
+                    .preferredColorScheme(.dark)
+            }
+        }
+    }
+}
+
+extension Date: Identifiable {
+    public var id: Date { self }
+}
+
+struct HistoryDayCard: View {
+    let date: Date
+    @ObservedObject var viewModel: EnergyCycleViewModel
+    let onTap: () -> Void
+    
+    var cycle: EnergyCycle? {
+        EnergyCycleStorage.shared.load(for: date)
+    }
+    
+    var body: some View {
+        Button(action: {
+            onTap()
+        }) {
+            VStack(alignment: .leading, spacing: 12) {
+                HStack {
+                    Text(date, style: .date)
+                        .font(.headline)
+                        .foregroundColor(.colorText)
+                    
+                    Spacer()
+                    
+                    if Calendar.current.isDateInToday(date) {
+                        Text("Today")
+                            .font(.caption)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(Color.color1.opacity(0.3))
+                            .foregroundColor(.color1)
+                            .cornerRadius(8)
+                    }
+                }
+                
+                if let cycle = cycle {
+                    HStack(spacing: 20) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "chart.line.uptrend.xyaxis")
+                                .font(.caption)
+                            Text("\(cycle.energyLevels.count) measurements")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.colorText.opacity(0.7))
+                        
+                        HStack(spacing: 4) {
+                            Image(systemName: "list.bullet")
+                                .font(.caption)
+                            Text("\(cycle.plannedActivities.count) tasks")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.colorText.opacity(0.7))
+                        
+                        HStack(spacing: 4) {
+                            Image(systemName: "checkmark.circle")
+                                .font(.caption)
+                            Text("\(cycle.actualActivities.count) completed")
+                                .font(.caption)
+                        }
+                        .foregroundColor(.colorText.opacity(0.7))
+                    }
+                }
+            }
+            .padding(16)
+            .smallCardStyle()
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+
+
+struct HistoryDayDetailView: View {
+    let date: Date
+    @ObservedObject var viewModel: EnergyCycleViewModel
+    @Environment(\.dismiss) var dismiss
+    
+    var cycle: EnergyCycle? {
+        EnergyCycleStorage.shared.load(for: date)
+    }
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                Color.mainBack
+                    .ignoresSafeArea()
+                
+                if let cycle = cycle {
+                    ScrollView {
+                        VStack(spacing: 20) {
+                            // Заголовок
+                            VStack(spacing: 8) {
+                                Text(date, style: .date)
+                                    .font(.system(size: 28, weight: .bold))
+                                    .foregroundColor(.colorText)
+                                
+                                if Calendar.current.isDateInToday(date) {
+                                    Text("Today")
+                                        .font(.caption)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 6)
+                                        .background(Color.color1.opacity(0.3))
+                                        .foregroundColor(.color1)
+                                        .cornerRadius(10)
+                                }
+                            }
+                            .padding(.top)
+                            
+                            // Статистика дня
+                            DayStatisticsView(energyCycle: cycle)
+                                .padding(.horizontal)
+                            
+                            // График энергии
+                            if !cycle.energyLevels.isEmpty {
+                                EnergyChartView(energyCycle: cycle)
+                                    .frame(height: 300)
+                                    .padding(.horizontal)
+                            }
+                            
+                            // Активности
+                            if !cycle.plannedActivities.isEmpty || !cycle.actualActivities.isEmpty {
+                                VStack(alignment: .leading, spacing: 12) {
+                                    Text("Activities")
+                                        .font(.headline)
+                                        .foregroundColor(.colorText)
+                                        .padding(.horizontal)
+                                    
+                                    ForEach(cycle.plannedActivities.sorted(by: { $0.scheduledTime < $1.scheduledTime })) { activity in
+                                        ActivityRowView(activity: activity)
+                                            .padding(.horizontal)
+                                    }
+                                    
+                                    ForEach(cycle.actualActivities.sorted(by: { $0.startTime < $1.startTime })) { activity in
+                                        CompletedActivityRowView(activity: activity)
+                                            .padding(.horizontal)
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.vertical)
+                    }
+                } else {
+                    VStack(spacing: 16) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.system(size: 50))
+                            .foregroundColor(.colorText.opacity(0.5))
+                        Text("No data for this day")
+                            .foregroundColor(.colorText.opacity(0.7))
+                            .font(.headline)
+                    }
+                }
+            }
+            .navigationTitle("Day Details")
+            .navigationBarTitleDisplayMode(.inline)
+            .foregroundColor(.colorText)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                    .foregroundColor(.colorText)
+                }
+            }
+        }
+    }
+}
+
+struct CompletedActivityRowView: View {
+    let activity: CompletedActivity
+    
+    var body: some View {
+        HStack(spacing: 14) {
+            ZStack {
+                Circle()
+                    .fill(Color.green.opacity(0.2))
+                    .frame(width: 44, height: 44)
+                
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.green)
+                    .font(.system(size: 18, weight: .semibold))
+            }
+            
+            VStack(alignment: .leading, spacing: 6) {
+                Text(activity.title)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.colorText)
+                
+                HStack(spacing: 6) {
+                    Image(systemName: "clock")
+                        .font(.caption2)
+                    Text("\(activity.startTime, style: .time) - \(activity.endTime, style: .time)")
+                        .font(.caption)
+                }
+                .foregroundColor(.colorText.opacity(0.7))
+            }
+            
+            Spacer()
+        }
+        .padding(16)
+        .smallCardStyle()
     }
 }
 
